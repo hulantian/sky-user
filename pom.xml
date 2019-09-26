@@ -8,8 +8,8 @@
     <groupId>com.ufm</groupId>
     <artifactId>sky-user</artifactId>
     <version>1.0.0</version>
-    <name>User Services</name>
-    <description>联合金科基础服务</description>
+    <name>sky-user</name>
+    <description>蓝天基础服务</description>
 
     <modules>
         <module>common-lib</module>

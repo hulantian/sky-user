@@ -95,18 +95,4 @@ public class OrganController {
         return Result.success(organVo);
     }
 
-
-    /**
-      * 测试方法
-      * @done
-      * @Tag 1.0.0
-      * @Date 2019/9/25 16:38
-      * @Params
-      * @Return java.lang.String
-      */
-    @GetMapping("v1/helloWorld")
-    public String helloWorld(){
-        return "Hello World!";
-    }
-
 }
