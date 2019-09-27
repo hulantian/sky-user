@@ -26,7 +26,6 @@ import java.util.stream.Collectors;
 
 /**
  * 组织服务方法实现类
- *
  * @ClassName OrganServiceImpl
  * @Author 胡蓝天
  * @Date 2019/9/20 14:29
@@ -62,12 +61,19 @@ public class OrganServiceImpl implements IOrganService {
 
     @Override
     public String deleteOrgan(GetOrganDto organDto) {
-        /*List<UserVo> userVoList = userService.getUserListByOrgId(organDto.getOrganId());
+        List<UserVo> userVoList = userService.getUserListByOrgId(organDto.getOrganId());
         if (userVoList != null && userVoList.size() > 0) {
             throw new ServiceExcepion(ErrorCode.ORGANNIZATION_EXIST_MEMBER);
         } else {
+            OrganizationEntity organizationEntity = new OrganizationEntity();
+            organizationEntity.setIsDelete(GlobalConst.IS_DELETED);
+            LambdaQueryWrapper<OrganizationEntity> wrapper3 = new LambdaQueryWrapper<>();
+            wrapper3.eq(OrganizationEntity::getId, organDto.getOrganId());
+            organizationMapper.update(organizationEntity, wrapper3);
+
             LambdaQueryWrapper<OrganizationEntity> wrapper = new LambdaQueryWrapper<>();
             wrapper.eq(OrganizationEntity::getPid, organDto.getOrganId());
+
             List<OrganizationEntity> organizationEntityList = organizationMapper.selectList(wrapper);
             if (!CollectionUtils.isEmpty(organizationEntityList)) {
                 List<String> childIdList = organizationEntityList.stream()
@@ -75,15 +81,9 @@ public class OrganServiceImpl implements IOrganService {
                 for (String organId : childIdList) {
                     deleteOrgan(new GetOrganDto(organId));
                 }
-
-                OrganizationEntity organizationEntity = new OrganizationEntity();
-                organizationEntity.setIsDelete(GlobalConst.IS_DELETED);
-                LambdaQueryWrapper<OrganizationEntity> wrapper3 = new LambdaQueryWrapper<>();
-                wrapper3.eq(OrganizationEntity::getId, organDto.getOrganId());
-                organizationMapper.update(organizationEntity, wrapper3);
             }
-        }*/
-        List<OrganizationEntity> organizationEntityList = new ArrayList<>();
+        }
+        /*List<OrganizationEntity> organizationEntityList = new ArrayList<>();
         getSubOrganList(organDto, organizationEntityList);
 
         for (OrganizationEntity organizationEntity : organizationEntityList) {
@@ -91,7 +91,7 @@ public class OrganServiceImpl implements IOrganService {
             LambdaQueryWrapper<OrganizationEntity> wrapper3 = new LambdaQueryWrapper<>();
             wrapper3.eq(OrganizationEntity::getId, organDto.getOrganId());
             organizationMapper.update(organizationEntity, wrapper3);
-        }
+        }*/
         return "";
     }
 
